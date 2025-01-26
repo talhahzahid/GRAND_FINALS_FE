@@ -72,7 +72,6 @@ export default function LoanLandingPage() {
         </div>
       </section>
 
-      {/* Loan Calculator Section */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-800">
@@ -100,7 +99,6 @@ export default function LoanLandingPage() {
                 </select>
               </div>
 
-              {/* Select Subcategory */}
               {loanData.category && (
                 <div>
                   <label className="block text-gray-700 font-medium">

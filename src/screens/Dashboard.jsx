@@ -13,10 +13,6 @@ const LoanRequest = () => {
         setGuarantors(updatedGuarantors);
     };
 
-    // const handleAddGuarantor = () => {
-    //     setGuarantors([...guarantors, { name: "", email: "", location: "", cnic: "" }]);
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,7 +22,7 @@ const LoanRequest = () => {
             amount,
             loanPeriod,
             guarantors,
-            status: "Pending", // Default status
+            status: "Pending",
         };
 
         const verifyToken = localStorage.getItem("accessToken");
@@ -149,13 +145,6 @@ const LoanRequest = () => {
                         </div>
                     ))}
 
-                    {/* <button
-                        type="button"
-                        onClick={handleAddGuarantor}
-                        className="text-blue-500 hover:text-blue-700"
-                    >
-                        Add Another Guarantor
-                    </button> */}
                 </div>
 
                 <button

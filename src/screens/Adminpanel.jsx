@@ -2,17 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const AdminDashboard = () => {
-    // State to hold the application data, loading status, and any error messages
     const [applications, setApplications] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Fetch data from API
     useEffect(() => {
         const fetchApplications = async () => {
             try {
                 const response = await axios.get("http://localhost:8000/api/v4/get");
-                setApplications(response.data.applications);  // Extract applications from response
+                setApplications(response.data.applications);  
             } catch (err) {
                 setError("Failed to load data.");
             } finally {
@@ -23,14 +21,12 @@ const AdminDashboard = () => {
         fetchApplications();
     }, []);
 
-    // Handle approve button click
     const handleApprove = async (id) => {
         try {
             const response = await axios.put(
                 `http://localhost:8000/api/v4/status/${id}`,
                 { status: "Approved" }
             );
-            // Update the status of the application locally
             setApplications((prevApplications) =>
                 prevApplications.map((app) =>
                     app._id === id ? { ...app, status: "Approved" } : app
@@ -41,14 +37,12 @@ const AdminDashboard = () => {
         }
     };
 
-    // Handle reject button click
     const handleReject = async (id) => {
         try {
             const response = await axios.put(
                 `http://localhost:8000/api/v4/status/${id}`,
                 { status: "Rejected" }
             );
-            // Update the status of the application locally
             setApplications((prevApplications) =>
                 prevApplications.map((app) =>
                     app._id === id ? { ...app, status: "Rejected" } : app
@@ -59,7 +53,6 @@ const AdminDashboard = () => {
         }
     };
 
-    // Loading spinner or error message handling
     if (isLoading) {
         return (
             <div className="flex justify-center items-center min-h-screen">
@@ -93,7 +86,7 @@ const AdminDashboard = () => {
                             <th>Status</th>
                             <th>Created At</th>
                             <th>Guarantors</th>
-                            <th>Actions</th> {/* New column for buttons */}
+                            <th>Actions</th> 
                         </tr>
                     </thead>
                     <tbody>
@@ -117,7 +110,6 @@ const AdminDashboard = () => {
                                     ))}
                                 </td>
                                 <td>
-                                    {/* Approve and Reject buttons */}
                                     <button
                                         className="btn btn-success mr-2"
                                         onClick={() => handleApprove(application._id)}
