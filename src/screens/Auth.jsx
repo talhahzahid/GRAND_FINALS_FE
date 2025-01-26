@@ -18,9 +18,11 @@ export default function Auth() {
         const url = isLogin
             ? 'https://weird-samaria-webdev01-77782589.koyeb.app/api/v1/login'
             : 'https://weird-samaria-webdev01-77782589.koyeb.app/api/v1/signup';
-
+        // Credential: includes
         try {
-            const response = await axios.post(url, form);
+            const response = await axios.post(url, form , {
+                credentials: "include",
+            });
             setMessage(response.data.message);
             if (isLogin) {
                 navigate("/")
